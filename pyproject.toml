@@ -1,0 +1,53 @@
+[tool.ruff]
+
+line-length = 120
+indent-width = 4
+
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "**/tests/*",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+
+ignore = [
+    "PTH",  # flake8-use-pathlib
+    "TD",  # flake8-todos
+    "RUF001",  # ambiguous-unicode-character-string
+    "RUF002",  # ambiguous-unicode-character-docstring
+    "RUF003",  # ambiguous-unicode-character-comment
+    "D100",  # undocumented-public-module
+    "D104",  # Missing docstring in public package
+    "N999",  # invalid-module-name
+    "FA102",  # Missing `from __future__ import annotations`, but uses PEP 585 collection
+    "TRY003",  # Avoid specifying long messages outside the exception class
+]
