@@ -13,6 +13,10 @@ HOUSE_CLASSIFICATION_BY_FLOORS = {
     "Многоэтажный": FloorBoundaries(17, math.inf),
 }
 
+NON_INT_FLOORS_ERROR_MESSAGE = "Количество этажей должно быть целым числом."
+INCORRECT_FLOORS_NUMBER_ERROR_MESSAGE = "Количество этажей должно быть больше 0."
+INCORRECT_FLOORS_BORDERS_ERROR_MESSAGE = "Неконсистентные границы классификации."
+
 
 def read_file(filename: str) -> list[dict]:
     """Читает данные из CSV файла и преобразует их в список словарей.
@@ -48,16 +52,16 @@ def classify_house(floor_count: int) -> str:
     "Малоэтажный", "Среднеэтажный" или "Многоэтажный".
     """
     if not isinstance(floor_count, int):
-        raise TypeError("Количество этажей должно быть целым числом.")
+        raise TypeError(NON_INT_FLOORS_ERROR_MESSAGE)
 
     if floor_count <= 0:
-        raise ValueError("Количество этажей должно быть больше 0.")
+        raise ValueError(INCORRECT_FLOORS_NUMBER_ERROR_MESSAGE)
 
     for _type, boundaries in HOUSE_CLASSIFICATION_BY_FLOORS.items():
         if boundaries.lowest <= floor_count <= boundaries.highest:
             return _type
 
-    raise ValueError("Неконсистентные границы классификации.")
+    raise ValueError(INCORRECT_FLOORS_BORDERS_ERROR_MESSAGE)
 
 
 def get_classify_houses(houses: list[dict]) -> list[str]:
